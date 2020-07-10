@@ -12,8 +12,7 @@ const App = () => {
                 <button onClick={() => setValue((v) => v + 1)}>+</button>
                 <button onClick={() => setVisible(false)}>hide</button>
                 <ClassCounter value={value}/>
-                <HookCounter value={value}/>
-                <Notification />
+                <PlanetInfo id={value} />
             </div>
         );
     } else {
@@ -21,21 +20,15 @@ const App = () => {
     }
 };
 
-const HookCounter = ({value}) => {
-useEffect(() => console.log('useEffect'),[value])
-useEffect(() => console.log('update'))
-useEffect(() => ()  => console.log('unmount'))
-    return <p> {value} </p>;
-};
+const PlanetInfo = ({id}) => {
 
-const Notification = () => {
-
-    const [visible,setVisible] = useState(true)
-
-
+    fetch('https://swapi.dev/api/planets/')
+        .then(res => res.json())
+        .then(data => console.log(data.results))
+    console.log(dataLeng)
     return (
         <div>
-            {visible && <p>Hello</p>}
+
         </div>
     )
 }
